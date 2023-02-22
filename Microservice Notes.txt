@@ -1,0 +1,267 @@
+----------------------------------------------------------------
+Microservice architecture
+----------------------------------------------------------------
+
+1.What is  Monolith architecture:
+Monolith architecture is a software design pattern in which one application contains all of the services a company needs. 
+The advantages of this structure are that it is easy to deploy and develop, and Scale is simple. The disadvantages of this design are that 
+it is technology-dependent, and it can become complex when a company becomes larger.
+  
+   a) Technology-dependent
+   b) Engneering foucse
+   c) scaling data layer ( one db only)
+   d) Overloaded VM(havay application bundel take time to start)
+   e) CI/CD problem, test, Build , conflict
+   f) understing take time
+   
+   easier to join ultipal table 
+   easy transation mangment
+   
+   
+   
+2.What is  Microservice
+Do the function decompotsition  based on function area or service in monolth application and create small-2 service or application and there own db.
+decomposed and sepreted into individual functional area
+
+Like
+1.Search +Product
+2.Rating and Review
+3.User
+4.Payments & billing 
+5.Shippig
+6.Notification
+7.Finance and Insurance(for )
+8.Marchant 
+
+1. Service intract each other by calling rest or rpc call.
+2. Every service having there owen db 
+3. Scaling much faster
+4. deploying easy
+5. No dependency with technology(like java or node or python)
+6. faster is development and understand(bucuase it is losely coupled)
+7. One service not impaced other services
+
+disadvantege
+1. Interprocess communication(call using rest api other service, if service is not ip  handel with circute braking pattern  )
+2. Distrubuted Tranctions(2 phase commit, saga design pattern)
+3. More resource utilization
+4. debugging issue(difficult to trance and debug, need to use distributed tracing)
+
+
+3. How to scalup the microservice:
+ 1. concept call scalcube(you are grow this cube in three diffrent area x,y,z 
+    a) x direction Horzential scaling ()
+	b) z scal data partitioning technic (data partitioning using cosistence hashing )
+	c) functional decompotsition(decomposed microservie more other microservice)
+	d) vartical scaling (adding more server and memory and core etc)
+	
+4. What is API Gateway :
+     a)direct call :client is tightly coupled with microservice  if client request each microservices
+     b) API gateway : One more service layer between client and service layer that is api gateway or we called front facing microservice. 
+                 Now any client want to connect or communicate microservice they will request to or sent request to api gatway and api 
+				 gateway call to microservice and gets the whatever information it needs.
+				  using api gate way you can make in call parallel or sequence manner depent on scenerio
+			
+			
+     C)Similer to api we have : BFF backend to frontEnd 
+				                           In this we have diffrent api gateway for diffrent kind of application like for web (web api gatway)
+										   for Mobile app (Mobile app api gateway), Third party api gateway, so idea is diffrent or number of api gateway depent on scenerio.
+										   (diffrent kind of information diffrent kind of devices and have diffirent gateway to serve the same)
+5. What is advantage of using API gateway?
+     a)Authentication 
+	     (Authenticate any api in API gate way it self not need to write same logic in multimal microservice (centeries authentication))
+	 b)SSL termination
+	      HTTPS : (HTTPS call only validate the caliing api gateway by client and apigateway internally call all the microservice using 
+		            http or without HTTPS or not need to setup all the microservices SSL certification)
+	 c)Load Balancing: You can setup the load balancing in API gateway itself.
+           	 
+	 d)Insulation : 
+	      a)Provide the security and issolation to microservice (No one able to access the microservice apart from microservice).
+		  b)No need to change client side code if any chnage happend to microservice we to the transation in clinet templte and return the responce.
+		  c)
+	 
+									
+5. What is disadvantage of using API gateway?
+      a) Incress the hob (now we are making two call for one request that may be cause littil bit of latency issue)
+	  b) System getting complicated 
+	  
+6.What is the Service Discovery ?
+         Let suppose microservice having the multipal instance running then how api gateway or using direct call(rest call) we know 
+		 the microservice port and ip address at runtime. microservice instance going up and down. then how one microservice access 
+		 the other microservice or how to api gateway know that xyz microservice running on which ip and port   
+         a)Network address : communication of ip address and port no. 
+	
+	So Service discovery is pattern that help to identify all of the instance Network address of the microservices.
+	So now the quenstion is how we do that the ans is service-register.
+    
+7. What is the service-registery :
+         A service-register you think about the sepert service or the database  which accualy cantain list all of the instances of 
+		 every microservices Network address. That list accualy called as Service-Register.
+		 
+		 Lets suppose you having the database that cantail all of the 
+		 Microservice name , Instance, and Network address.
+		 
+		 a)what it help and how it help :
+		     let suppose client or api gateway want to talk  directly to microservice they can basically ask to Service-registery to give me 
+			 all of network address for xyz microservice
+8.How the service-register get the all of the microservice instances network address
+         Theire is two way 
+          a) Self registery : 
+		       Means that microservice automatic register himself to Service-registery. let suppose I want to scalup xyz microservice 
+			   so once the microservice up the itself make call to Service-registery and register itself. 
+			   and if particuller instance not making call in that particuller time the service-registery understand that this is old 
+			   network address respective microservice and remove it. 
+			   and every particullet time slot they keep on updating itself
+			   
+		  b) Third party registery:
+		      In this case microservices is not going to talk with service-registery instead of service-registery go and ask 
+			  the microservices their network address and update in Service-registery.
+		  c) How to service-registery know whom to ask ?
+              So service-register lisening the event of cluster scaling up and scaling down so every time cluster add 
+			  new node or instances basicaly the update the service registry and service-registery keep on taking the instance 
+			  that what microservices are you and what is the your network address and then it will update the service-registery
+			  and also the is doing perotically to check whether taht instance is alive or not.
+			  So that way we have the latest ip address every instances of microservices. 
+			  
+9. Advantege of third party	 service-registery:
+        a) We configur the fall back to same other third party Services as services or not working
+		
+10. How many tyoe of service-discovery
+     Two type : 1. client side and (cleint directly call service-registery and get latest  network address and now they having 
+	                the network address of all of the microservice instances so they able to call xyz instance of abcd microservice. 
+					this client side load balancing)
+	            2. Server side  :
+				   In this scenerio client not directly talk to Service-registery
+				   They talk with api gateway and api hetway make request to Service-registery to give the latest update network 
+				   address all of the microservices. then api getway sent requet to microservice and return the responce to client.
+				   
+11. What is Inter-service comminication 
+    there is two way : 
+	a)Rest api call : 
+	   two way 
+	          a) Syncronous call : 
+			      Advantege
+			         Easy to call
+				     realtime: (getting responce realtime)
+			     Disadvantage
+				     service availbilty: (most the service is up)
+					 Responce time : incress the latency of call (deleye on responce if microservice calling multipal microservice)
+					 
+			  b) Asyncronous call: Queue based Communication 
+			      Take exaple like one order is place order microservice then how to other microservice know  the order is placed 
+                  So order microservice send the massge to queue the order is placed then all the microservice that are listening 
+				  and get updated that order is placed	(may be that microservice sent same massge to multipal queue).
+				  This is asyncronus way of communication. (losly coupled )
+				  
+				 Advantege
+				  1.Faster way of communication
+				  2.Decoupled service
+				  3.Worked even if when service is down
+				  4.No need for service discovery( that all need to know about queue that can be hard coded)
+				  
+				 DisAdvantage
+				  1.complex design
+				  2.prossce letency(deley responce, additional deley)
+				  3.Monitoring cost
+				  4.Running cost of queue as well	  
+	                
+	b)RCP call 
+
+12. What is Circute bracker  design pattern ?
+     Just take example we have microservice ms1, ms2 and ms3 the call each other syncronusally
+	 when request come ms1 is making ms2 and internally making call ms3 and  if every thing goes well  we will get responce is successfull.
+	 but that is not every  scenerio may be some time any of service went down or overloaded. then we will get responce as error  but we don't want to send back error.
+     (May be the case where one microservice calling other microservice continuously using try mechanism)	 
+	 We want to handel is batter way. 
+	 
+	 So we want to count this type of problem We appliement the Circute brecker degin pattern to each microservice.
+	 Circute brecker is remember which service is failing how many time, and circute brecker return cached responce .
+	 Chached responce is successfull responce that we recived in priovious call time before the service is fail 
+	 so we will not recived error but we recied successfull responce.
+	 
+	 a)Return Cached responce
+	 b)Fall back: Redirect call to some oter service( that is called as fall back) that is supliment for this service. (like we process video that implented by our team , so we can redirect to third party api)
+	 c)Recoverd : Not call to faille service for particuller  amount of time.
+	 
+	 State :
+	 Open : failed
+	 closed : evey things working fine
+	 half-closed: checking after failde responce that service is up or not if service is return successfull responce 
+	 then we go for closed state otherwise  we set the open state.
+	 
+13. What is Service-Mesh?
+     Problem :
+	    a)Load balancing
+		b)Service discovery
+		c)Matrics
+		d)Retryed
+		f)circute braking
+		e)Timeout 
+		Whose is going do this all of that.
+		
+		Service mesh is one of componates that run with every microservice with deployment and helps to do 
+		all do these above mention problem(resolve the problem).
+		When we are deploying the microservice we have to deploy Service-Mesh also if we have 10 diffirent 
+		microservice instance then then diffirent service mess is running parralel to same microservice.
+		This pattern called as side car pattern.
+		1. Side car is one pattern that service mesh implement (Service mesh worked as proxy)
+	
+		
+		So microservice  Ms1 make call to service-mesh and service mesh making call to Ms2
+		 So in our code we not need to write code for service-registery, We not to vary about load balancing, 
+		 we not need to log the matrics as well, circute braking, timeout.
+
+        Service-Mesh Having to componates
+         a) control plane: is the centries hub or  single hub which act like control panel which configration the all of the proxy side loaded
+		 that every  microservice for running on every  instance.
+		 Using control panel we basically  provide the all of the configration to these individual proxy.so proxy know how to behave
+		 basically proxy are one who does the load balancing, service-discovery, Matrics, retryed, timeout
+		 
+		 Mange and configore the proxy in data palne.
+		 
+         b) Data plane:	 Group of all of the proxy is running.this proxy doesn't know other exiting proxy in same cluster  
+		    they basically worked as independently
+			
+			Request goes into Data palne
+			
+14. What is Microservice Deploymet pattern :
+     Deployment Goal :
+	 
+	  a)Scalability
+	  b)Reliable & available
+	  c)Isolation()
+	  d)Resource limit
+	  e)Monitor
+	  f)cost effective
+	  
+	  Pattern :
+	  Multipal Service Per host : In one virtual machine running the more the one microservice it could me 10 or 50 .
+	  These service are running sepret process of same oprating system
+	  
+	  
+      	 
+		
+		
+		
+		
+		
+     
+
+	 
+	 
+	 
+    				   
+ 
+		
+			  
+		  
+	
+  	
+		 
+
+	  
+	  
+				 
+
+
+ 

@@ -1,0 +1,192 @@
+---------------------------------------------------
+citi bank
+---------------------------------------------------
+1.What is the Re-hashing ?
+2.Fail-fast(ArrayList)  and fail-safe(copyOnwriteArray)
+3.String-builder  str , str.append(), map.put(str, 1), str.appent(kumar), map.get(str); key is modified
+4.how a primitive integer cannot be stored in a hash map.
+5.how hashmaps will not allow a string builder to be appended to a map
+6.string builder is being used to compare two rates of interest, the equality method should return true only if the data types are double.
+7.how the heap memory and stack live and how the marker interface interfaces work
+8.use of optional classes and fault isolation.
+9.whta is Think-lint pom.xml
+10.create string how many way : using new , literal, string buffer, builder
+11.String immutable 
+12.String memory allocation 
+13.stream using which itreator intarnally
+14.mathed refernce :: java 8
+15.what is build tool you are using ans-> mavan  
+16.how to change repository in mavan project (mavan-setting.xml we will change text where want pick file)
+17.find string lengh without in build function programming
+18.object class mathoed ?(tostring, hashmap,equel, wait, clone,  )
+19.what is function interface   
+20.function interface before java 8 (runable and compareable)
+21.How to handel transation in between two microservice(using think client jar)
+
+datebase
+1. what is indexing (for bigger record creat index)
+   
+--------------------------------------------------------------
+Jio interview
+----------------------------------------------------------------
+1.What is hasing 
+2.What is hash collision, type and way to deal it (),
+3.filter list greterthen 5 using streem api .
+4.findunique element in a list usning stream
+5.how to maintain insertion order in set (using linkedset)
+6.hasmap and hashset different
+7.concurrent hashmap and hashmap
+8.function interface before java 8 (runable and compareable, comparetor)
+9.different between  compareable and comparetor
+10.sort string in list 
+11.how many way you can create thread example and write program.
+
+1. what is excutor framework
+2. create thread pool and assign and print task
+3. will finaly block excute if return form try
+4. now find common elemnet in two list
+5. write customised exception class
+6. how many way create rest api
+7. diff between post and put
+-----------------------------------------------------------------
+IMPETUS Company round -1
+-----------------------------------------------------------------
+1.Program Two String is anagram or not
+2.Program find the frequncy of each number
+3.How to sort key in hashmap 
+4.Why spring boot preffer over spring
+5.What is hashing 
+6.Concurrent Hashmap
+7.Different concurrent hashmap between hashmap 
+8.What is function interface 
+9.Java 7 (callable . runable, comparetor, compareable) and java 8 function interface (function , supplier, predicate, consumer) 
+10.Improment in hashmap in java 8 (while hashing collision happen we store the value in link list one threasold after that we use it red black binary tree);
+11.What is the stream and why we are using it ?(stre is concise way of iterating over collections, we can chain the no of opration in stream like intermediate, and termination opration);
+12.Static and defult method different (do't want override and having same functionalty using defult method)
+13.What is aggregation and composition most confusing interview quetion
+14.Diff ArrayList and Linklist
+ 
+ Database
+1. What is the join
+2. diff between inner join and outtter join
+3. find max salary of dept
+4.  
+
+
+-----------------------------------------------------------------
+IMPETUS Company round -2
+-----------------------------------------------------------------
+1. find the all palindrom in sunstring if string 
+2. what is lamda expression (implemantion of function interface we can use -> symbol to express the lamda expression)
+3. What IOC container
+4. Spring Secuirty
+5. Junit
+6. SonarQube (help to  write the neat and clean code)
+7. Production deployment (using jenkins ci/cd tool)
+8. How to debug on Production(correcting data in DB , but if having problem with code try to replicate on QA and fix it)  
+9. Any challege face in project 
+10.
+
+-------------------------------------------------------------------
+Tatva soft second -1 projectbase
+-------------------------------------------------------------------
+1.Introduce yourself
+2.Role in your project 
+3.Why we using Spring (benifit auto configration, emmadded server (tomact and jetty))
+4.what is the springbootAppliction annotation (combination of @EnableAutoconfiguration, @configuration, @componatscan)   
+5.What is JPA
+6.whay using spring framework (benifit IOC, DI)(IOC is third party library in spring using for creating, managing and destroy bean)
+7.how many type ioc container present in spring (two type ApplicationContext and BeanFactory, application context extend the beanfactory class)
+8.which container is egar and lazy loading 
+9.Java 8 key feature(Lambada expresion, stream api, DateTime api, optional class)
+10.what is stream (Stram is way to perform a pipeline of opration over collection in java in a concise manner. we have two type of opration intermediate and terminal)
+11. intermediate opration and terminal opration (intermediate opration are those opration which return the stream like filter and map, and terminal opration are those oprations which  written to collect the output)
+12. use stream and dataTime api
+  
+
+-------------------------------------------------------------------
+Tatva soft second -2 projectbase
+-------------------------------------------------------------------
+1.What is jira (task mangment and there state )
+2.How you are doinh testing in our project
+3.Junit testing and  mockito 
+4.How are you following the Agile methology  
+
+Database
+1.What is the database you are using 
+2.optimisty lock (where a record is locked only when  change are commit) and pessimistic lock (where record is locked while editing)
+3.what is locking 
+4.  
+
+-------------------------------------------------------------------
+Tatva soft second -3 projectbase
+-------------------------------------------------------------------
+1.about your self(name, address, education, work exprince)
+2.family background 
+3.10th and 12th place and board place
+4.Learing in current project
+5.Two things you not like in infosys
+6.  
+
+-------------------------------------------------------------------
+Symphony Company
+-------------------------------------------------------------------
+1.Project releted qution 
+2.How many microservice you used
+3.How to communicate microservice
+4.what is Think client( creating transation between two microservice)
+5.Way of creating string
+6.Why String is immutable
+7.String memory Starcture
+8.Stream using which itreator intarnally
+9.What is method refernce ::
+10.Which build tool you are using
+11.  
+
+--------------------------------------------------------------------------
+Master card interview
+--------------------------------------------------------------------------
+1.how to import only static members of a class, and 
+2.how to convert a string into an integer. They also discuss 
+3.how to create a Jenkins pipeline to deploy applications using Docker.
+4.how they ensure that deadlocks don't happen
+5.What is recurcive programming or recursion
+6.concurrent hasmap
+7.how to prevent dead lock (using tool J console come with jdk only, the provide the inside of your project(whatever obehct are create whatever dead lock are happing it can provide that information to you) by observing the info you can prevent the dead lock )
+8.what is  JWT token an dhow to implemnet
+9.How to deploy code using  AWS(we have jenkins pipe line, we are creating docker image and we will push that image to aws ECS and EC2 , labmda ) 
+10.How to managing security of microservices? (application security,user security, framework security, calling between the down stream applications)
+11. how to create prototype bean (create @componate @scope ('prototype') class xyz)
+12. failfast and failsafe
+13. 
+
+--------------------------------------------------------------------------
+Wipro Interview Quetion 
+--------------------------------------------------------------------------
+1. Java 8 feature 
+2. lambda expression ()
+3. method referce ::(refering fuction interface  method )
+4. basic feature of opps
+5. encupsulation, abstraion
+6. join, when use inner join, left outer join, right join
+7. whye springboot vs spring framework
+8. which annotion provide auto configration(@Enableautoconfigration, @configration)
+9. singleton class is tread safe or not (not thread safe) by defult
+10.@service, @repository, @controller
+11. diff deteach transiant and parsistent state of db( parsistent object has save database, )
+12. multiple data contion by hibernate(abastract design pattern)
+13. 
+
+-----------------------------------------------------------------------------------
+AWS
+----------------------------------------------------------------------------------
+1.What is microservices architecture and why is it important?
+2.How do you design and deploy microservices on AWS?
+3.Can you explain the difference between EC2 and ECS for deploying microservices on AWS?
+4.How do you handle service discovery and registration in a microservices architecture on AWS?
+5.How do you handle service communication and inter-service calls in a microservices architecture on AWS?
+6.How do you monitor and troubleshoot microservices running on AWS?
+7.How do you implement security in a microservices architecture on AWS?
+8.Can you discuss the use of AWS services such as API Gateway, Lambda, and DynamoDB in a microservices architecture?
+9.How do you perform continuous integration and deployment in a microservices architecture on AWS?
+10.Can you discuss any challenges you have faced while deploying and managing microservices on AWS and how you overcame them?
